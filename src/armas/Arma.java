@@ -1,9 +1,7 @@
 package armas;
 
-/**
- * Clase abstracta que representa un arma equipable por un personaje.
- * Cada arma tiene danio base, utilidad (usos restantes) y un bonus de agilidad.
- */
+//Clase abstracta que representa un arma equipable por un personaje
+//Cada arma tiene daño base, utilidad (usos restantes) y un bonus de agilidad
 public abstract class Arma {
 
     private int danio;
@@ -18,7 +16,7 @@ public abstract class Arma {
         this.agilidad = agilidad;
     }
 
-    /** Repara el arma recuperando parte de su utilidad. Cada subtipo define cuanto. */
+    //Repara el arma recuperando parte de su utilidad, cada subtipo define cuanto
     public abstract void reparar();
 
     //Getters y setters
