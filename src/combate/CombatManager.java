@@ -4,6 +4,16 @@ import personajes.Enemigo;
 import personajes.Jugador;
 import personajes.Personaje;
 
+import ataques.Ataque;
+import ataques.AtaqueAgil;
+import ataques.AtaqueAgresivo;
+import ataques.AtaqueBasico;
+import ataques.AtaqueDefensivo;
+import ataques.AtaquePoderoso;
+
+import estrategia.EstrategiaAgresiva;
+import estrategia.EstrategiaDefensiva;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -130,17 +140,48 @@ public class CombatManager {
 
     //Acciones de combate
 
+    private Ataque construirAtaque(Personaje atacante) {
+        Ataque ataque = new AtaqueBasico();
+
+        // Decorador por atributo Fuerza.
+        // El personaje hace un ataque poderoso si tiene fuerza alta.
+        if (atacante.getFuerza() >= 15) {
+            ataque = new AtaquePoderoso(ataque);
+        }
+
+        // Decorador por atributo Agilidad.
+        // El personaje hace un ataque agil si tiene agilidad alta.
+        if (atacante.getAgilidad() >= 12) {
+            ataque = new AtaqueAgil(ataque);
+        }
+
+        // Decoradores por estrategia.
+        // Solo los enemigos tienen estrategia de combate.
+        if (atacante instanceof Enemigo) {
+            Enemigo enemigo = (Enemigo) atacante;
+
+            if (enemigo.getEstrategia() instanceof EstrategiaAgresiva) {
+                ataque = new AtaqueAgresivo(ataque);
+            } else if (enemigo.getEstrategia() instanceof EstrategiaDefensiva) {
+                ataque = new AtaqueDefensivo(ataque);
+            }
+        }
+        
+        return ataque;
+    }
+
     private void ejecutarAtaque(Personaje atacante, Personaje defensor) {
-        Calculador calc = Calculador.getInstance();
-        int danio = calc.calcularDanio(atacante, defensor);
+        Ataque ataque = construirAtaque(atacante);
+        int danio = ataque.ejecutar(atacante, defensor);
 
         // Gastar uso del arma
-        if (atacante.getArma() != null && atacante.getArma().getUtilidad() > 0) {
+        if (atacante.getArma() != null && atacante.getArma().getUtilidad() > 0){
             atacante.getArma().setUtilidad(atacante.getArma().getUtilidad() - 1);
         }
 
         defensor.recibirDanio(danio);
-        System.out.println(atacante.getNombre() + " ataca a " + defensor.getNombre()
+        System.out.println(atacante.getNombre() + " realiza " + ataque.getDescripcion()
+                + " contra " + defensor.getNombre()
                 + " con " + (atacante.getArma() != null ? atacante.getArma().getNombre() : "punos")
                 + " -> " + danio + " de danio"
                 + " [" + defensor.getNombre() + ": " + defensor.getVida() + "/" + defensor.getVidaMaxima() + " vida]");
