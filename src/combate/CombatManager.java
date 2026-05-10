@@ -141,9 +141,10 @@ public class CombatManager {
         defensor.recibirDanio(danio);
         System.out.println(atacante.getNombre() + " realiza " + ataque.getDescripcion()
                 + " contra " + defensor.getNombre()
-                + " con " + (atacante.getArma() != null ? atacante.getArma().getNombre() : "punos")
-                + " -> " + danio + " de danio"
-                + " [" + defensor.getNombre() + ": " + defensor.getVida() + "/" + defensor.getVidaMaxima() + " vida]");
+                + " con " + (atacante.getArma() != null ? atacante.getArma().getNombre() : "puntos")
+                + " -> " + danio + " de daño"
+                + " [" + defensor.getNombre() + ": " + defensor.getVida() + "/" + defensor.getVidaMaxima() 
+                + " vida]");
     }
 
     private void restaurarDefensa(Personaje personaje) {

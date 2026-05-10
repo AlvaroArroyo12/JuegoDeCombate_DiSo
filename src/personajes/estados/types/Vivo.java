@@ -22,8 +22,12 @@ public class Vivo implements EstadoPersonaje {
     public void aplicarEfecto() {}
 
     @Override
-    public boolean puedeActuar() { return true; }
+    public boolean puedeActuar() { 
+        return true; 
+    }
 
     @Override
-    public String getNombre() { return "Vivo"; }
+    public String getNombre() { 
+        return "Vivo"; 
+    }
 }

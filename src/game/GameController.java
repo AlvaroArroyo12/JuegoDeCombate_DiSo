@@ -98,14 +98,14 @@ public class GameController {
 
     private Arma elegirArma() {
         System.out.println("\nElige tu arma:");
-        System.out.println("  1) Espada   (danio:20, usos:10, agi:5)");
-        System.out.println("  2) Hacha    (danio:25, usos:8,  agi:2)");
-        System.out.println("  3) Martillo (danio:30, usos:6,  agi:0)");
-        System.out.println("  4) Arco     (danio:15, usos:12, agi:10)");
-        System.out.println("  5) Varita   (danio:18, usos:15, agi:8)");
-        System.out.println("  6) Bomba    (danio:35, usos:3,  agi:0)");
-        System.out.println("  7) Escudo   (danio:5,  usos:20, agi:0)");
-        System.out.println("  8) Armadura (danio:2,  usos:25, agi:0)");
+        System.out.println("  1) Espada   (daño:20, usos:10, agi:5)");
+        System.out.println("  2) Hacha    (daño:25, usos:8,  agi:2)");
+        System.out.println("  3) Martillo (daño:30, usos:6,  agi:0)");
+        System.out.println("  4) Arco     (daño:15, usos:12, agi:10)");
+        System.out.println("  5) Varita   (daño:18, usos:15, agi:8)");
+        System.out.println("  6) Bomba    (daño:35, usos:3,  agi:0)");
+        System.out.println("  7) Escudo   (daño:5,  usos:20, agi:0)");
+        System.out.println("  8) Armadura (daño:2,  usos:25, agi:0)");
 
         int opcion = leerNumero(1, 8);
 

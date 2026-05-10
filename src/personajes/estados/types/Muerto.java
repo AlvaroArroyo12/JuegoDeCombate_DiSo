@@ -13,8 +13,12 @@ public class Muerto implements EstadoPersonaje {
     public void aplicarEfecto() {}
 
     @Override
-    public boolean puedeActuar() { return false; }
+    public boolean puedeActuar() { 
+        return false; 
+    }
 
     @Override
-    public String getNombre() { return "Muerto"; }
+    public String getNombre() { 
+        return "Muerto"; 
+    }
 }

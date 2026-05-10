@@ -19,7 +19,9 @@ public class Jugador extends Personaje {
         }
     }
 
-    public int getPuntuacion() { return puntuacion; }
+    public int getPuntuacion() { 
+        return puntuacion; 
+    }
 
     @Override
     public String toString() {

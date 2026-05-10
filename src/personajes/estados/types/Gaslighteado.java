@@ -14,7 +14,7 @@ public class Gaslighteado implements EstadoPersonaje {
     @Override
     public void evaluarTransicion() {
         int pct = contexto.getPorcentajeVida();
-        if (pct == 0)      contexto.setEstadoPersonaje(contexto.getMuerto());
+        if (pct == 0) contexto.setEstadoPersonaje(contexto.getMuerto());
         else if (pct > 60) contexto.setEstadoPersonaje(contexto.getVivo());
     }
 
@@ -24,10 +24,14 @@ public class Gaslighteado implements EstadoPersonaje {
     }
 
     @Override
-    public boolean puedeActuar() { return true; }
+    public boolean puedeActuar() { 
+        return true; 
+    }
 
     @Override
-    public String getNombre() { return "Gaslighteado"; }
+    public String getNombre() { 
+        return "Gaslighteado"; 
+    }
 
     //Mientras está gaslighteado, la fuerza efectiva baja un 20%. 
     @Override

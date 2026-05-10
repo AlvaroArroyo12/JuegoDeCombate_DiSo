@@ -15,17 +15,15 @@ public class Contexto {
     private final Muerto muertoState;
 
     public Contexto(Personaje personaje) {
-        this.personaje         = personaje;
-        this.vivoState         = new Vivo(this);
+        this.personaje = personaje;
+        this.vivoState = new Vivo(this);
         this.gaslighteadoState = new Gaslighteado(this);
-        this.muertoState       = new Muerto();
-        this.estadoPersonaje   = vivoState;
+        this.muertoState = new Muerto();
+        this.estadoPersonaje = vivoState;
     }
 
-    /**
-     * Punto de entrada para evaluar transiciones.
-     * Delega al estado actual; la logica de transicion vive en cada estado.
-     */
+    //Punto de entrada para evaluar transiciones.
+    //Delega al estado actual; la logica de transicion vive en cada estado.
     public void logicaTransicionDeEstados() {
         estadoPersonaje.evaluarTransicion();
     }
@@ -38,12 +36,24 @@ public class Contexto {
         }
     }
 
-    public EstadoPersonaje getEstadoPersonaje() { return estadoPersonaje; }
+    public EstadoPersonaje getEstadoPersonaje() { 
+        return estadoPersonaje;
+    }
 
-    public int    getPorcentajeVida()  { return personaje.getPorcentajeVida(); }
-    public String getNombrePersonaje() { return personaje.getNombre(); }
+    public int getPorcentajeVida()  { 
+        return personaje.getPorcentajeVida(); 
+    }
+    public String getNombrePersonaje() { 
+        return personaje.getNombre(); 
+    }
 
-    public Vivo         getVivo()         { return vivoState; }
-    public Gaslighteado getGaslighteado() { return gaslighteadoState; }
-    public Muerto       getMuerto()       { return muertoState; }
+    public Vivo getVivo(){ 
+        return vivoState; 
+    }
+    public Gaslighteado getGaslighteado() { 
+        return gaslighteadoState; 
+    }
+    public Muerto getMuerto(){ 
+        return muertoState; 
+    }
 }
