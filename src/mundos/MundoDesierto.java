@@ -1,7 +1,7 @@
 package mundos;
 
 import estrategia.EstrategiaAgresiva;
-import estrategia.EstrategiaDefensiva;
+import estrategia.EstrategiaEquilibrada;
 import personajes.tipos.Guerrero;
 import personajes.tipos.Mago;
 import personajes.tipos.Mutante;
@@ -24,7 +24,7 @@ public class MundoDesierto implements MundoFactory {
 
     @Override
     public Mutante crearMutante() {
-        return new MutanteDesierto(new EstrategiaDefensiva());
+        return new MutanteDesierto(new EstrategiaEquilibrada());
     }
 
     @Override

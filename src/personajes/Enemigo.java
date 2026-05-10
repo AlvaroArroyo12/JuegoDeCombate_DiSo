@@ -3,8 +3,7 @@ package personajes;
 import armas.Arma;
 import estrategia.EstrategiaCombate;
 
-//Clase abstracta que representa a un enemigo, cada enemigo tiene una estrategia 
-
+// Clase abstracta que representa a un enemigo; cada enemigo tiene una estrategia de combate.
 public abstract class Enemigo extends Personaje {
 
     private EstrategiaCombate estrategia;
@@ -15,22 +14,20 @@ public abstract class Enemigo extends Personaje {
         this.estrategia = estrategia;
     }
 
-    //Template Method
+    /** Template Method: orquesta la decision de accion del enemigo cada turno. */
     public final int decidirSiguienteAccion(Personaje oponente) {
-        // Paso 1: preparar turno
         prepararTurno();
+        evaluarEstadoTurno();
 
-        // Paso 2: si el estado no permite actuar, pasar turno
-        if (getEstado() != null && !getEstado().puedeActuar()) {
-            return 3; //pasar
+        getEstado().aplicarEfecto();
+        if (!getEstado().puedeActuar()) {
+            return 3; // pasar turno
         }
 
-        // Paso 3: comprobar si necesita curarse
         if (necesitaCurarse()) {
-            return 2; //curar
+            return 2; // curar
         }
 
-        //Paso 4: delegar en la estrategia asignada
         return estrategia.decidirAccion(this, oponente);
     }
 

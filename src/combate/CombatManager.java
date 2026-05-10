@@ -9,36 +9,37 @@ import ataques.AtaqueAgil;
 import ataques.AtaqueAgresivo;
 import ataques.AtaqueBasico;
 import ataques.AtaqueDefensivo;
+import ataques.AtaqueEquilibrado;
 import ataques.AtaquePoderoso;
 
 import estrategia.EstrategiaAgresiva;
 import estrategia.EstrategiaDefensiva;
+import estrategia.EstrategiaEquilibrada;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-//Gestiona la logica de combate entre jugador y enemigo
-//El GameController delega aqui
-
+// Gestiona la logica de combate entre jugador y enemigo. El GameController delega aqui.
 public class CombatManager {
 
     private Scanner scanner;
     private Random random;
+    // Bonus de defensa pendiente de revertir al inicio del siguiente turno de cada personaje.
+    private final Map<Personaje, Integer> bonusDefensaActivo = new HashMap<>();
 
     public CombatManager(Scanner scanner) {
         this.scanner = scanner;
         this.random = new Random();
     }
 
-    //Ejecuta un combate por turnos entre el jugador y un enemigo.
-    //Devuelve true si gana el jugador, false si pierde.
-
+    /** Ejecuta un combate por turnos. Devuelve true si gana el jugador. */
     public boolean ejecutarCombate(Jugador jugador, Enemigo enemigo) {
         System.out.println("\n══════════════════════════════════════");
         System.out.println("  COMBATE: " + jugador.getNombre() + " vs " + enemigo.getNombre());
         System.out.println("══════════════════════════════════════");
 
-        //Decidir quien empieza al azar
         boolean turnoJugador = random.nextBoolean();
         System.out.println("Empieza: " + (turnoJugador ? jugador.getNombre() : enemigo.getNombre()));
 
@@ -56,7 +57,6 @@ public class CombatManager {
             turno++;
         }
 
-        //Resultado
         if (jugador.estaVivo()) {
             int puntos = 10 + enemigo.getFuerza() + enemigo.getResistencia();
             jugador.sumarPuntos(puntos);
@@ -68,15 +68,14 @@ public class CombatManager {
         }
     }
 
-    //Muestra las opciones al jugador y ejecuta la accion elegida.
+    // El jugador elige su accion. Se evalua el estado al inicio del turno.
     private void turnoDelJugador(Jugador jugador, Enemigo enemigo) {
-        //Aplicar efecto del estado actual
-        if (jugador.getEstado() != null) {
-            jugador.getEstado().aplicarEfecto();
-            if (!jugador.getEstado().puedeActuar()) {
-                System.out.println(jugador.getNombre() + " no puede actuar! (" + jugador.getEstado().getNombre() + ")");
-                return;
-            }
+        restaurarDefensa(jugador);
+        jugador.evaluarEstadoTurno();
+        jugador.getEstado().aplicarEfecto();
+        if (!jugador.getEstado().puedeActuar()) {
+            System.out.println(jugador.getNombre() + " no puede actuar! (" + jugador.getEstado().getNombre() + ")");
+            return;
         }
 
         System.out.println("\n" + jugador);
@@ -91,82 +90,44 @@ public class CombatManager {
         int opcion = leerOpcion(1, 5);
 
         switch (opcion) {
-            case 1:
-                ejecutarAtaque(jugador, enemigo);
-                break;
-            case 2:
-                ejecutarDefensa(jugador);
-                break;
-            case 3:
-                ejecutarCuracion(jugador);
-                break;
-            case 4:
-                ejecutarReparacion(jugador);
-                break;
-            case 5:
-                System.out.println(jugador.getNombre() + " pasa el turno.");
-                break;
+            case 1: ejecutarAtaque(jugador, enemigo);  break;
+            case 2: ejecutarDefensa(jugador);           break;
+            case 3: ejecutarCuracion(jugador);          break;
+            case 4: ejecutarReparacion(jugador);        break;
+            case 5: System.out.println(jugador.getNombre() + " pasa el turno."); break;
         }
     }
 
-    //El enemigo decide su accion usando el Template Method + Strategy.
+    // El enemigo delega en decidirSiguienteAccion(), que ya gestiona estado y estrategia.
     private void turnoDelEnemigo(Enemigo enemigo, Jugador jugador) {
-        // Aplicar efecto del estado actual
-        if (enemigo.getEstado() != null) {
-            enemigo.getEstado().aplicarEfecto();
-            if (!enemigo.getEstado().puedeActuar()) {
-                System.out.println(enemigo.getNombre() + " no puede actuar! (" + enemigo.getEstado().getNombre() + ")");
-                return;
-            }
-        }
-
+        restaurarDefensa(enemigo);
         int accion = enemigo.decidirSiguienteAccion(jugador);
 
         switch (accion) {
-            case 0:
-                ejecutarAtaque(enemigo, jugador);
-                break;
-            case 1:
-                ejecutarDefensa(enemigo);
-                break;
-            case 2:
-                ejecutarCuracion(enemigo);
-                break;
-            default:
-                System.out.println(enemigo.getNombre() + " pasa el turno.");
-                break;
+            case 0: ejecutarAtaque(enemigo, jugador); break;
+            case 1: ejecutarDefensa(enemigo);          break;
+            case 2: ejecutarCuracion(enemigo);         break;
+            default: System.out.println(enemigo.getNombre() + " pasa el turno."); break;
         }
     }
-
-    //Acciones de combate
 
     private Ataque construirAtaque(Personaje atacante) {
         Ataque ataque = new AtaqueBasico();
 
-        // Decorador por atributo Fuerza.
-        // El personaje hace un ataque poderoso si tiene fuerza alta.
         if (atacante.getFuerza() >= 15) {
             ataque = new AtaquePoderoso(ataque);
         }
-
-        // Decorador por atributo Agilidad.
-        // El personaje hace un ataque agil si tiene agilidad alta.
         if (atacante.getAgilidad() >= 12) {
             ataque = new AtaqueAgil(ataque);
         }
 
-        // Decoradores por estrategia.
-        // Solo los enemigos tienen estrategia de combate.
         if (atacante instanceof Enemigo) {
             Enemigo enemigo = (Enemigo) atacante;
-
-            if (enemigo.getEstrategia() instanceof EstrategiaAgresiva) {
-                ataque = new AtaqueAgresivo(ataque);
-            } else if (enemigo.getEstrategia() instanceof EstrategiaDefensiva) {
-                ataque = new AtaqueDefensivo(ataque);
-            }
+            if      (enemigo.getEstrategia() instanceof EstrategiaAgresiva)    ataque = new AtaqueAgresivo(ataque);
+            else if (enemigo.getEstrategia() instanceof EstrategiaDefensiva)   ataque = new AtaqueDefensivo(ataque);
+            else if (enemigo.getEstrategia() instanceof EstrategiaEquilibrada) ataque = new AtaqueEquilibrado(ataque);
         }
-        
+
         return ataque;
     }
 
@@ -174,8 +135,7 @@ public class CombatManager {
         Ataque ataque = construirAtaque(atacante);
         int danio = ataque.ejecutar(atacante, defensor);
 
-        // Gastar uso del arma
-        if (atacante.getArma() != null && atacante.getArma().getUtilidad() > 0){
+        if (atacante.getArma() != null && atacante.getArma().getUtilidad() > 0) {
             atacante.getArma().setUtilidad(atacante.getArma().getUtilidad() - 1);
         }
 
@@ -187,11 +147,19 @@ public class CombatManager {
                 + " [" + defensor.getNombre() + ": " + defensor.getVida() + "/" + defensor.getVidaMaxima() + " vida]");
     }
 
+    private void restaurarDefensa(Personaje personaje) {
+        Integer bonus = bonusDefensaActivo.remove(personaje);
+        if (bonus != null) {
+            personaje.setResistencia(personaje.getResistencia() - bonus);
+        }
+    }
+
     private void ejecutarDefensa(Personaje personaje) {
         Calculador calc = Calculador.getInstance();
         int bonus = calc.calcularBonusDefensa(personaje);
         personaje.setResistencia(personaje.getResistencia() + bonus);
-        System.out.println(personaje.getNombre() + " se defiende (+" + bonus + " resistencia)");
+        bonusDefensaActivo.merge(personaje, bonus, Integer::sum);
+        System.out.println(personaje.getNombre() + " se defiende (+" + bonus + " resistencia temporal)");
     }
 
     private void ejecutarCuracion(Personaje personaje) {
@@ -214,7 +182,6 @@ public class CombatManager {
         }
     }
 
-    //Utilidades
     private int leerOpcion(int min, int max) {
         int opcion = -1;
         while (opcion < min || opcion > max) {

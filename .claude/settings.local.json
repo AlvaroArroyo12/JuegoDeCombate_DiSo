@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\alvar\\\\OneDrive\\\\Escritorio\\\\uni\\\\Segundo\\\\Segundo 2\\\\diseño software\\\\JuegoDeCombate_DiSo\" -Recurse -File -Filter \"*.java\")",
+      "Bash(Select-Object FullName)"
+    ]
+  }
+}

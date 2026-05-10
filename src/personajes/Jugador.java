@@ -1,9 +1,8 @@
 package personajes;
+
 import armas.Arma;
 
-//Clase del personaje controlado por el usuario
-//El usuario elige nombre, atributos y arma antes de la partida
-
+// Personaje controlado por el usuario; el jugador elige nombre, atributos y arma antes de la partida.
 public class Jugador extends Personaje {
 
     private int puntuacion;

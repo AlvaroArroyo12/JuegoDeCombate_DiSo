@@ -33,7 +33,7 @@ public class Calculador {
      */
     
     public int calcularDanio(Personaje atacante, Personaje defensor) {
-        int fuerza = atacante.getFuerza();
+        int fuerza = atacante.getFuerzaEfectiva();
         int danioArma = 0;
         if (atacante.getArma() != null && atacante.getArma().getUtilidad() > 0) {
             danioArma = atacante.getArma().getDanio();

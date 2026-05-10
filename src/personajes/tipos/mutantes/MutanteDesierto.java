@@ -1,12 +1,13 @@
 package personajes.tipos.mutantes;
 
+import armas.defensa.Armadura;
 import estrategia.EstrategiaCombate;
 import personajes.tipos.Mutante;
 
 public class MutanteDesierto extends Mutante {
 
     public MutanteDesierto(EstrategiaCombate estrategia) {
-        super("Mutante del Desierto", 14, 11, 9, null, estrategia); 
+        super("Mutante del Desierto", 14, 11, 9, new Armadura(), estrategia);
     }
 
     @Override

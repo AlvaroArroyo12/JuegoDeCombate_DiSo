@@ -2,6 +2,7 @@ package mundos;
 
 import estrategia.EstrategiaAgresiva;
 import estrategia.EstrategiaDefensiva;
+import estrategia.EstrategiaEquilibrada;
 import personajes.tipos.Guerrero;
 import personajes.tipos.Mago;
 import personajes.tipos.Mutante;
@@ -24,7 +25,7 @@ public class MundoMar implements MundoFactory {
 
     @Override
     public Mutante crearMutante() {
-        return new MutanteMar(new EstrategiaDefensiva());
+        return new MutanteMar(new EstrategiaEquilibrada());
     }
 
     @Override

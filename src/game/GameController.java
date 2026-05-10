@@ -30,8 +30,6 @@ public class GameController {
     private List<MundoFactory> mundos;
     private boolean juegoActivo;
 
-    // ── Singleton ──
-
     private GameController() {
         this.scanner = new Scanner(System.in);
         this.combatManager = new CombatManager(scanner);
@@ -45,8 +43,6 @@ public class GameController {
         }
         return instancia;
     }
-
-    // ── Facade: metodos publicos simples ──
 
     /**
      * Inicia el juego completo: creacion de personaje, mundos y combates.
@@ -74,8 +70,6 @@ public class GameController {
     public void registrarMundo(MundoFactory mundo) {
         mundos.add(mundo);
     }
-
-    // ── Logica interna ──
 
     private void crearJugador() {
         System.out.println("\n--- CREACION DE PERSONAJE ---");
@@ -112,8 +106,10 @@ public class GameController {
         System.out.println("  4) Arco     (danio:15, usos:12, agi:10)");
         System.out.println("  5) Varita   (danio:18, usos:15, agi:8)");
         System.out.println("  6) Bomba    (danio:35, usos:3,  agi:0)");
+        System.out.println("  7) Escudo   (danio:5,  usos:20, agi:0)");
+        System.out.println("  8) Armadura (danio:2,  usos:25, agi:0)");
 
-        int opcion = leerNumero(1, 6);
+        int opcion = leerNumero(1, 8);
 
         switch (opcion) {
             case 1: return new Espada();
@@ -122,6 +118,8 @@ public class GameController {
             case 4: return new Arco();
             case 5: return new Varita();
             case 6: return new Bomba();
+            case 7: return new Escudo();
+            case 8: return new Armadura();
             default: return new Espada();
         }
     }
