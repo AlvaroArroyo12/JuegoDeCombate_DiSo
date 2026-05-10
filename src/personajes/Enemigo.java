@@ -21,11 +21,11 @@ public abstract class Enemigo extends Personaje {
 
         getEstado().aplicarEfecto();
         if (!getEstado().puedeActuar()) {
-            return 3; // pasar turno
+            return 3; 
         }
 
         if (necesitaCurarse()) {
-            return 2; // curar
+            return 2; 
         }
 
         return estrategia.decidirAccion(this, oponente);
@@ -36,8 +36,6 @@ public abstract class Enemigo extends Personaje {
     protected boolean necesitaCurarse() {
         return getPorcentajeVida() < 20;
     }
-
-    //Getters y Setters
 
     public EstrategiaCombate getEstrategia() { 
         return estrategia; 

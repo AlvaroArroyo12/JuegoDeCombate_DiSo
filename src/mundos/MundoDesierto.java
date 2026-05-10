@@ -9,7 +9,6 @@ import personajes.tipos.guerreros.GuerreroDesierto;
 import personajes.tipos.magos.MagoDesierto;
 import personajes.tipos.mutantes.MutanteDesierto;
 
-//implementación del abstract factory 
 public class MundoDesierto implements MundoFactory {
 
     @Override

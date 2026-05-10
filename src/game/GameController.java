@@ -14,11 +14,9 @@ import java.util.List;
 import java.util.Scanner;
 
 /*
-  Patron Facade + Singleton.
+  Patrón Facade + Singleton.
   Punto de entrada unico al juego. Oculta la complejidad de los subsistemas
-  (creacion de personajes, gestion de mundos, combates) tras una interfaz simple.
- 
-  Tambien es Singleton: solo puede existir una instancia del controlador.
+  (creacion de personajes, gestion de mundos, combates) tras una interfaz simple. 
  */
 public class GameController {
 
@@ -61,10 +59,6 @@ public class GameController {
         cerrar();
     }
 
-    /*
-       Registra un mundo/escenario en el juego.
-       Persona B llamara a este metodo para anadir sus fabricas.
-     */
     public void registrarMundo(MundoFactory mundo) {
         mundos.add(mundo);
     }

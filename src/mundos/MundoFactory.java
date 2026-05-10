@@ -13,6 +13,5 @@ public interface MundoFactory {
     Mago crearMago();
     Mutante crearMutante();
 
-    //Nombre del mundo para la consola
     String getNombreMundo();
 }

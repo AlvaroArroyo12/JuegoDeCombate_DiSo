@@ -4,7 +4,7 @@ import armas.Arma;
 import estrategia.EstrategiaCombate;
 import personajes.Enemigo;
 
-//Tipo base Mago (agil pero poco resistente)
+//Tipo base Mago (ágil pero poco resistente)
 public abstract class Mago extends Enemigo {
 
     public Mago(String nombre, int fuerza, int resistencia, int agilidad,

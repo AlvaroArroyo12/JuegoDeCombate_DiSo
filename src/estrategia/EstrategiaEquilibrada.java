@@ -2,9 +2,9 @@ package estrategia;
 
 import personajes.Personaje;
 
-/**
- * Estrategia equilibrada: defiende si esta tocado o el oponente esta fuerte,
- * y ataca en caso contrario.
+/*
+   Estrategia equilibrada: defiende si esta tocado o el oponente esta fuerte,
+   y ataca en caso contrario.
  */
 public class EstrategiaEquilibrada implements EstrategiaCombate {
 

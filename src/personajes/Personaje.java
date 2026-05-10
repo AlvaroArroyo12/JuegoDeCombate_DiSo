@@ -48,7 +48,6 @@ public abstract class Personaje {
         return (vida * 100) / vidaMaxima;
     }
 
-    // Getters y Setters
     public String getNombre() { 
         return nombre; 
     }
@@ -102,7 +101,6 @@ public abstract class Personaje {
         return contexto; 
     }
 
-    // Devuelve el estado activo actual. 
     public EstadoPersonaje getEstado() { 
         return contexto.getEstadoPersonaje(); 
     }

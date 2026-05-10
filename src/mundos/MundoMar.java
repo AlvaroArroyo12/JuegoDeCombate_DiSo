@@ -10,7 +10,6 @@ import personajes.tipos.guerreros.GuerreroMar;
 import personajes.tipos.magos.MagoMar;
 import personajes.tipos.mutantes.MutanteMar;
 
-//implementación del abstract factory
 public class MundoMar implements MundoFactory {
 
     @Override
