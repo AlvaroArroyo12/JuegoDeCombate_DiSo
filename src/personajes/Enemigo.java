@@ -39,8 +39,12 @@ public abstract class Enemigo extends Personaje {
 
     //Getters y Setters
 
-    public EstrategiaCombate getEstrategia() { return estrategia; }
-    public void setEstrategia(EstrategiaCombate estrategia) { this.estrategia = estrategia; }
+    public EstrategiaCombate getEstrategia() { 
+        return estrategia; 
+    }
+    public void setEstrategia(EstrategiaCombate estrategia) { 
+        this.estrategia = estrategia; 
+    }
 
     @Override
     public String toString() {

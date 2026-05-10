@@ -49,31 +49,63 @@ public abstract class Personaje {
     }
 
     // Getters y Setters
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getNombre() { 
+        return nombre; 
+    }
+    public void setNombre(String nombre) { 
+        this.nombre = nombre; 
+    }
 
-    public int getFuerza() { return fuerza; }
-    public void setFuerza(int fuerza) { this.fuerza = fuerza; }
+    public int getFuerza() { 
+        return fuerza; 
+    }
+    public void setFuerza(int fuerza) { 
+        this.fuerza = fuerza; 
+    }
 
-    public int getResistencia() { return resistencia; }
-    public void setResistencia(int resistencia) { this.resistencia = resistencia; }
+    public int getResistencia() { 
+        return resistencia; 
+    }
+    public void setResistencia(int resistencia) { 
+        this.resistencia = resistencia; 
+    }
 
-    public int getAgilidad() { return agilidad; }
-    public void setAgilidad(int agilidad) { this.agilidad = agilidad; }
+    public int getAgilidad() { 
+        return agilidad; 
+    }
+    public void setAgilidad(int agilidad) { 
+        this.agilidad = agilidad; 
+    }
 
-    public int getVida() { return vida; }
-    public void setVida(int vida) { this.vida = Math.max(0, Math.min(vidaMaxima, vida)); }
+    public int getVida() { 
+        return vida; 
+    }
+    public void setVida(int vida) { 
+        this.vida = Math.max(0, Math.min(vidaMaxima, vida)); 
+    }
 
-    public int getVidaMaxima() { return vidaMaxima; }
-    public void setVidaMaxima(int vidaMaxima) { this.vidaMaxima = vidaMaxima; }
+    public int getVidaMaxima() { 
+        return vidaMaxima; 
+    }
+    public void setVidaMaxima(int vidaMaxima) { 
+        this.vidaMaxima = vidaMaxima; 
+    }
 
-    public Arma getArma() { return arma; }
-    public void setArma(Arma arma) { this.arma = arma; }
+    public Arma getArma() { 
+        return arma; 
+    }
+    public void setArma(Arma arma) { 
+        this.arma = arma; 
+    }
 
-    public Contexto getContexto() { return contexto; }
+    public Contexto getContexto() { 
+        return contexto; 
+    }
 
     // Devuelve el estado activo actual. 
-    public EstadoPersonaje getEstado() { return contexto.getEstadoPersonaje(); }
+    public EstadoPersonaje getEstado() { 
+        return contexto.getEstadoPersonaje(); 
+    }
 
     //Fuerza ajustada por el estado actual (ej: Herido aplica -20%). 
     public int getFuerzaEfectiva() {
