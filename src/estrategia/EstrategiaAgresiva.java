@@ -6,7 +6,7 @@ public class EstrategiaAgresiva implements EstrategiaCombate {
 
     @Override
     public int decidirAccion(Personaje yo, Personaje oponente) {
-        return 0; // atacar siempre
+        return 0; //atacar siempre
     }
 
     @Override

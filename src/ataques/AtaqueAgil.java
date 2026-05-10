@@ -15,6 +15,6 @@ public class AtaqueAgil extends AtaqueDecorator {
 
     @Override
     public String getDescripcion() {
-        return super.getDescripcion() + " agil";
+        return super.getDescripcion() + " ágil";
     }
 }

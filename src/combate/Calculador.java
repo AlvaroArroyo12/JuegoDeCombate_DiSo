@@ -45,7 +45,7 @@ public class Calculador {
 
         double danioSinVariacion = danioBase + bonusAgilidad - reduccion;
 
-        // Variacion aleatoria del +/- 10%
+        //Variación aleatoria del +/- 10%
         double factor = 0.9 + (random.nextDouble() * 0.2);
         int danioFinal = (int) Math.round(danioSinVariacion * factor);
 
@@ -54,7 +54,6 @@ public class Calculador {
 
     //Calcula la cantidad de curacion de un personaje.
     //Personajes mas resistentes se curan mejor.
-    
     public int calcularCuracion(Personaje personaje) {
         int base = 15;
         int bonus = (int) (personaje.getResistencia() * 0.2);

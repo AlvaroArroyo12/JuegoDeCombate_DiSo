@@ -9,6 +9,6 @@ public interface EstrategiaCombate {
 
     int decidirAccion(Personaje yo, Personaje oponente);
 
-    /** Nombre de la estrategia para mostrar por consola. */
+    //Nombre de la estrategia para mostrar por consola. 
     String getNombre();
 }

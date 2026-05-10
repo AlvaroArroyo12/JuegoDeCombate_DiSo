@@ -7,16 +7,16 @@ package personajes.estados;
  */
 public interface EstadoPersonaje {
 
-    /** Evalua si el personaje debe cambiar de estado y lo hace si procede. */
+    //Evalua si el personaje debe cambiar de estado y lo hace si procede. 
     void evaluarTransicion();
 
-    /** Aplica efectos propios del estado al inicio de cada turno. */
+    //Aplica efectos propios del estado al inicio de cada turno. 
     void aplicarEfecto();
 
-    /** Devuelve true si el personaje puede realizar acciones en este estado. */
+    // Devuelve true si el personaje puede realizar acciones en este estado. 
     boolean puedeActuar();
 
-    /** Nombre del estado para mostrar por consola. */
+    // Nombre del estado para mostrar por consola. 
     String getNombre();
 
     /**

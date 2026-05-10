@@ -30,7 +30,7 @@ public class Contexto {
         estadoPersonaje.evaluarTransicion();
     }
 
-    /** Cambia de estado e imprime el mensaje solo si realmente cambia. */
+    //Cambia de estado e imprime el mensaje solo si realmente cambia. 
     public void setEstadoPersonaje(EstadoPersonaje nuevo) {
         if (nuevo != estadoPersonaje) {
             estadoPersonaje = nuevo;

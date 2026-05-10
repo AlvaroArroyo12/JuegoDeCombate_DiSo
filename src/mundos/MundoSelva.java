@@ -9,7 +9,7 @@ import personajes.tipos.guerreros.GuerreroSelva;
 import personajes.tipos.magos.MagoSelva;
 import personajes.tipos.mutantes.MutanteSelva;
 
-//implementacion del abstract factory
+//implementación del abstract factory
 public class MundoSelva implements MundoFactory {
 
     @Override

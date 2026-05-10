@@ -14,7 +14,7 @@ public abstract class Enemigo extends Personaje {
         this.estrategia = estrategia;
     }
 
-    /** Template Method: orquesta la decision de accion del enemigo cada turno. */
+    // Template Method: orquesta la decision de accion del enemigo cada turno. 
     public final int decidirSiguienteAccion(Personaje oponente) {
         prepararTurno();
         evaluarEstadoTurno();

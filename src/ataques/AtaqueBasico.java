@@ -12,6 +12,6 @@ public class AtaqueBasico implements Ataque {
 
     @Override
     public String getDescripcion() {
-        return "ataque basico";
+        return "ataque básico";
     }
 }

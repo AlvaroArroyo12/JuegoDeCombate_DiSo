@@ -44,9 +44,7 @@ public class GameController {
         return instancia;
     }
 
-    /**
-     * Inicia el juego completo: creacion de personaje, mundos y combates.
-     */
+    //Inicia el juego completo: creacion de personaje, mundos y combates.
     public void iniciarJuego() {
         System.out.println("========================================");
         System.out.println("          JUEGO DE COMBATE              ");
@@ -124,9 +122,7 @@ public class GameController {
         }
     }
 
-    /**
-     * Juega un mundo completo: genera enemigos con la fabrica y los combate uno a uno.
-     */
+    //Juega un mundo completo: genera enemigos con la fabrica y los combate uno a uno.
     private void jugarMundo(MundoFactory fabrica, int numeroMundo) {
         System.out.println("\n========================================");
         System.out.println("  MUNDO " + numeroMundo + ": " + fabrica.getNombreMundo());
@@ -144,7 +140,7 @@ public class GameController {
                 return;
             }
 
-            // Recuperar algo de vida entre combates
+            //Recuperar algo de vida entre combates
             if (i < enemigos.size() - 1) {
                 jugador.curar(20);
                 System.out.println(jugador.getNombre() + " descansa y recupera algo de vida. ["
@@ -155,9 +151,7 @@ public class GameController {
         System.out.println("\n" + jugador.getNombre() + " ha superado " + fabrica.getNombreMundo() + "!");
     }
 
-    /**
-     * Genera la lista de enemigos para un mundo. Mas enemigos en mundos avanzados.
-     */
+    //Genera la lista de enemigos para un mundo. Más enemigos en mundos avanzados.
     private List<Enemigo> generarEnemigos(MundoFactory fabrica, int numeroMundo) {
         List<Enemigo> enemigos = new ArrayList<>();
 

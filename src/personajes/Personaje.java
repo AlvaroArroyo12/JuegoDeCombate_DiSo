@@ -72,15 +72,15 @@ public abstract class Personaje {
 
     public Contexto getContexto() { return contexto; }
 
-    /** Devuelve el estado activo actual. */
+    // Devuelve el estado activo actual. 
     public EstadoPersonaje getEstado() { return contexto.getEstadoPersonaje(); }
 
-    /** Fuerza ajustada por el estado actual (ej: Herido aplica -20%). */
+    //Fuerza ajustada por el estado actual (ej: Herido aplica -20%). 
     public int getFuerzaEfectiva() {
         return contexto.getEstadoPersonaje().modificarFuerza(getFuerza());
     }
 
-    /** Evalua la transicion de estado al inicio de cada turno. */
+    // Evalua la transicion de estado al inicio de cada turno. 
     public void evaluarEstadoTurno() {
         contexto.logicaTransicionDeEstados();
     }

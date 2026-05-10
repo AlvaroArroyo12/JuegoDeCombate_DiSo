@@ -29,7 +29,7 @@ public class Gaslighteado implements EstadoPersonaje {
     @Override
     public String getNombre() { return "Gaslighteado"; }
 
-    /** Mientras está gaslighteado, la fuerza efectiva baja un 20%. */
+    //Mientras está gaslighteado, la fuerza efectiva baja un 20%. 
     @Override
     public int modificarFuerza(int fuerzaBase) {
         return (int) (fuerzaBase * 0.8);

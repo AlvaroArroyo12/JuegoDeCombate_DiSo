@@ -42,6 +42,6 @@ public abstract class Arma {
 
     @Override
     public String toString() {
-        return nombre + " [danio=" + danio + ", usos=" + utilidad + "]";
+        return nombre + " [daño=" + danio + ", usos=" + utilidad + "]";
     }
 }

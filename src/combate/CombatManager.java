@@ -21,12 +21,12 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-// Gestiona la logica de combate entre jugador y enemigo. El GameController delega aqui.
+//Gestiona la logica de combate entre jugador y enemigo. El GameController delega aquí.
 public class CombatManager {
 
     private Scanner scanner;
     private Random random;
-    // Bonus de defensa pendiente de revertir al inicio del siguiente turno de cada personaje.
+    //Bonus de defensa pendiente de revertir al inicio del siguiente turno de cada personaje.
     private final Map<Personaje, Integer> bonusDefensaActivo = new HashMap<>();
 
     public CombatManager(Scanner scanner) {
@@ -34,7 +34,7 @@ public class CombatManager {
         this.random = new Random();
     }
 
-    /** Ejecuta un combate por turnos. Devuelve true si gana el jugador. */
+    //Ejecuta un combate por turnos. Devuelve true si gana el jugador.
     public boolean ejecutarCombate(Jugador jugador, Enemigo enemigo) {
         System.out.println("\n══════════════════════════════════════");
         System.out.println("  COMBATE: " + jugador.getNombre() + " vs " + enemigo.getNombre());
@@ -68,7 +68,7 @@ public class CombatManager {
         }
     }
 
-    // El jugador elige su accion. Se evalua el estado al inicio del turno.
+    //El jugador elige su acción. Se evalua el estado al inicio del turno.
     private void turnoDelJugador(Jugador jugador, Enemigo enemigo) {
         restaurarDefensa(jugador);
         jugador.evaluarEstadoTurno();
@@ -98,15 +98,15 @@ public class CombatManager {
         }
     }
 
-    // El enemigo delega en decidirSiguienteAccion(), que ya gestiona estado y estrategia.
+    //El enemigo delega en decidirSiguienteAccion(), que ya gestiona estado y estrategia.
     private void turnoDelEnemigo(Enemigo enemigo, Jugador jugador) {
         restaurarDefensa(enemigo);
         int accion = enemigo.decidirSiguienteAccion(jugador);
 
         switch (accion) {
             case 0: ejecutarAtaque(enemigo, jugador); break;
-            case 1: ejecutarDefensa(enemigo);          break;
-            case 2: ejecutarCuracion(enemigo);         break;
+            case 1: ejecutarDefensa(enemigo); break;
+            case 2: ejecutarCuracion(enemigo); break;
             default: System.out.println(enemigo.getNombre() + " pasa el turno."); break;
         }
     }
@@ -127,7 +127,6 @@ public class CombatManager {
             else if (enemigo.getEstrategia() instanceof EstrategiaDefensiva)   ataque = new AtaqueDefensivo(ataque);
             else if (enemigo.getEstrategia() instanceof EstrategiaEquilibrada) ataque = new AtaqueEquilibrado(ataque);
         }
-
         return ataque;
     }
 
